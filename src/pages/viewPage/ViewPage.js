@@ -1,6 +1,8 @@
 import {
   useHistory,
+  useLocation,
   useParams,
+  Route,
 } from "react-router-dom/cjs/react-router-dom.min";
 import NavBar from "../NavBar";
 
@@ -14,6 +16,17 @@ const ViewPage = () => {
     : [];
   const getData = getStorage[getID];
 
+  //Query Parse...
+  // const getLocation = useLocation();
+  // const getURLParams = new URLSearchParams(getLocation.search);
+  // const getID = getURLParams.get("id");
+
+  const deleteTodo = () => {
+    getStorage.splice(getID, 1);
+
+    localStorage.setItem("todo", JSON.stringify(getStorage));
+    history.replace("/");
+  };
   return (
     <>
       <NavBar />
@@ -36,6 +49,11 @@ const ViewPage = () => {
         >
           {getData}
         </div>
+      </div>
+      <div>
+        <button style={{ background: "red" }} onClick={deleteTodo}>
+          Delete
+        </button>
       </div>
     </>
   );
