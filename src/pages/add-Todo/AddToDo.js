@@ -1,10 +1,13 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import NavBar from "../NavBar";
 import { useRef } from "react";
+import AuthCheck from "../../middleware/AuthCheck";
 
 const AddToDo = () => {
   const todoText = useRef();
   const history = useHistory();
+  //Auth Check
+  AuthCheck();
   const addToDo = (e) => {
     e.preventDefault();
     const todoString = todoText.current.value;

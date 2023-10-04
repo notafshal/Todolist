@@ -12,17 +12,26 @@ const MainPage = () => {
       <NavBar />
       <div className="todo_container">
         <h3>Your Todo's:</h3>
-
-        {getTodo.map((el, index) => (
+        {getTodo && getTodo.length > 0 ? (
           <>
-            <div className="single_todo">
-              {el}
-              <Link to={`/view/${index}`}>
-                <FaEye size={"20px"} />
-              </Link>
-            </div>
+            {getTodo.map((el, index) => (
+              <>
+                <div className="single_todo">
+                  {el}
+                  <Link to={`/view/${index}`}>
+                    <FaEye size={"20px"} />
+                  </Link>
+                </div>
+              </>
+            ))}
           </>
-        ))}
+        ) : (
+          <>
+            <center>
+              No Data Available. <Link to="/add">Add To do</Link>
+            </center>
+          </>
+        )}
       </div>
     </>
   );
